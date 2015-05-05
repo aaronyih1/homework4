@@ -79,18 +79,19 @@ int locationOfMin(const string a[], int n){
 }
 
 int moveToEnd(string a[], int n, int pos){
-    int temp = pos;
-    for(int i=pos+1; i<n-1; i++)
+    string temp = a[pos];
+    for(int i=pos; i<n-1; i++)
     {
-        a[i-1]=a[i];
+        a[i]=a[i+1];
     }
-    a[n-1]=a[temp];
+    a[n-1]=temp;
     for(int j=0; j<n; j++){
         cerr<<a[j]<<endl;
     }
     return(pos);
     
 }
+
 
 int main() {
     string people[5] = { "samwell", "jon", "margaery", "daenerys", "tyrion" };
