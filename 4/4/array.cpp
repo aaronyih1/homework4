@@ -93,9 +93,7 @@ int moveToEnd(string a[], int n, int pos){
         a[i]=a[i+1];
     }
     a[n-1]=temp;
-    for(int j=0; j<n; j++){
-        cerr<<a[j]<<endl;
-    }
+
     return(pos);
     
 }
@@ -143,31 +141,32 @@ int locateDifference(const string a1[], int n1, const string a2[], int n2){
 }
 
 int eliminateDups(string a[], int n){
-    int count = -1;
     if(n<0)
     {
-        return(false);
+        return(-1);
     }
     for(int i = 0; i<n; i++)
     {
-        if(a[i]==a[i+1])
-        {
-            for(int j = i+1; a[j]==a[i]; j++)
-            {
-                count++;
-                i++;
-            }
-            while(count > 0){
-                
-            }
+        if(a[i]==a[i+1]){
+            moveToEnd(a, n, i+1);
+            n--;
+            i--;
         }
     }
+    for(int j=0; j<n+1;j++)
+    {
+        cerr<<"here is cerr: "<<a[j]<<endl;
+    }
+    return(n+1);
+}
+
+bool subsequence(const string a1[], int n1, const string a2[], int n2){
+    
 }
 int main() {
-    string cast[5] = { "samwell", "jon", "margaery", "daenerys", "tyrion" };
-    string roles[4] = { "samwell", "jon", "sansa", "jaime" };
-    int k = locateDifference(cast, 5, roles, 4);  //  returns 2
-    int m = locateDifference(cast, 2, roles, 1);
-    cerr<< "k is : " << k <<endl;
-    cerr<<"m is : " << m <<endl;
+    string d[10] = {
+        "jon", "daenerys", "samwell", "samwell","joey", "margaery", "margaery", "margaery", "samwell", "samwell"
+    };
+    int p = eliminateDups(d, 10);
+    cerr<<"this is p:  "<<p<<endl;
 }
