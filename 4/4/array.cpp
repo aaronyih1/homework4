@@ -108,9 +108,6 @@ int moveToBeginning(string a[], int n, int pos){
         a[i]=a[i-1];
     }
     a[0]=temp;
-    for(int j=0; j<n; j++){
-        cerr<<a[j]<<endl;
-    }
     return(pos);
     
 }
@@ -161,12 +158,114 @@ int eliminateDups(string a[], int n){
 }
 
 bool subsequence(const string a1[], int n1, const string a2[], int n2){
+    int j=0;
+    int count=0;
+    if((n1<0)||(n2<0))
+    {
+        return(false);
+    }
+    if(n1>n2)
+    {
+        for(int i=0; i<n1;i++)
+        {
+            if(a1[i]==a2[j])
+            {
+                j++;
+                count++;
+            }
+        }
+        if(count==n2)
+        {
+            return(true);
+        }
+    }
+    else if(n2>n1)
+    {
+        for(int i=0; i<n2;i++)
+        {
+            if(a1[i]==a2[j])
+            {
+                j++;
+                count++;
+            }
+        }
+        if(count==n1)
+        {
+            return(true);
+        }
+    }
+return(false);
+}
+int makeMerger(const string a1[], int n1, const string a2[], int n2,
+               string result[], int max){
+    string listLow1;
+    string listLow2;
+    int i=0;
+    int j=0;
+    int counter=0;
+    string temp;
+    int longer=n1;
+    if((n1<0)||(n2<0))
+    {
+        return(-1);
+    }
+    if(n2>n1)
+    {
+        longer=n2;
+    }
+    while(counter<n1+n2){
+        if(a1[i]>a2[j])
+        {
+            result[counter]=a2[j];
+            j++;
+            counter++;
+        }
+        else{
+            result[counter]=a1[i];
+            i++;
+            counter++;
+        }
+    }
+    
+    for(int f=0; f<20;f++)
+    {
+        cerr<<f<< " is : "<<result[f]<< endl;
+    }
+    return(counter);
     
 }
+
+int divide(string a[], int n, string divider){
+    string temp;
+    string temp2;
+    int index2=n-1;
+    int index=0;
+    int counter =0;
+    for(int i = 0; i<n; i++){
+            if(a[i]<divider)
+            {
+                temp=a[index];
+                a[index]=a[i];
+                a[i]=temp;
+                index++;
+                counter++;
+            }
+            else if(a[i]==divider)
+            {
+                a[i]=divider;
+            }
+            else{
+                temp=a[index2];
+                a[index2]=a[i];
+                a[i]=temp;
+                index2--;
+            }
+        }
+    return(counter+1);
+}
+
 int main() {
-    string d[10] = {
-        "jon", "daenerys", "samwell", "samwell","joey", "margaery", "margaery", "margaery", "samwell", "samwell"
-    };
-    int p = eliminateDups(d, 10);
-    cerr<<"this is p:  "<<p<<endl;
+    string g[4] = { "samwell", "margaery", "tyrion", "jon" };
+    int s = divide(g, 4, "margaery");
+    cerr<<"s is here: "<<s<<endl;
 }
