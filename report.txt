@@ -1,0 +1,172 @@
+Aaron Yih
+
+a.) The most notable obstacle I overcame was trying to call the moveToEnd method with a string array. For some reason, the compiler would not recognize the function even thought the name was correct. I think there was a conflict in the fact that the parameter was a const string [] while the parameter that I was passing was just a plain string []. What I did to solve this problem was figure out a different way to approach the problem without calling this function.
+
+b.)Test cases:
+
+	1.) int enumerate(const string a[], int n, string target);
+		i.) negative n value(g, -3, “margaery”)
+			a.) string g[4] = { "samwell", "margaery", "tyrion", "jon" };
+			b.) Reason: to test an invalid but possible user input 
+		ii.) all values equal target(a, 4, “margaery”)
+			a.) string a[4] = {"margaery","margaery","margaery","margaery"};
+			b.) Reason: to test a valid user input that may result in an error
+		iii.) no values are equal to target(b, 4, “bobby”)
+			a.) string b[4] = { "samwell", "margaery", "tyrion", "jon" }; 
+			b.) Reason: to test a valid user input that may result in an error
+		iv.) valid test case(g, 4, “margaery”)
+			a.) string g[4] = { "samwell", "margaery", "tyrion", "jon" };
+			b.) Reason: to test that a valid user input works as predicted
+		v.) n is shorter than array length(g, 2, “margaery”)
+			a.) string g[4] = { "samwell", "margaery", "tyrion", "jon" };
+			b.) Reason: to test a valid user input that may result in an error
+		vi.) n is larger than array length(g, 8, “margaery”)
+			a.) string g[4] = { "samwell", "margaery", "tyrion", "jon" };
+			b.) Reason: to test an invalid but possible user input
+	2.) int locate(const string a[], int n, string target);
+		i.) negative n value(g, -3, "margaery")
+			a.) string g[4] = { "samwell", "margaery", "tyrion", "jon" };
+			b.) Reason: to test an invalid but possible user input 
+		ii.) no value equal to target(g, 4, “jenny”)
+			a.) string g[4] = { "samwell", "margaery", "tyrion", "jon" };
+			b.) Reason: to test a valid user input that may result in an error
+		iii.) case matters for comparison(b, 4, “mArgaery”)
+			a.) string b[4] = { "samwell", "margaery", "tyrion", "jon" };
+			b.) Reason: to test a valid user input that may result in an error
+		iv.) n is shorter than array length(b, 3, "margaery")
+			a.) string b[4] = { "samwell", "margaery", "tyrion", "jon" };
+			b.) Reason: to test a valid user input that may result in an error
+		v.) valid test case(b, 3, "margaery")
+			a.) string b[4] = { "samwell", "margaery", "tyrion", "jon" };
+			b.) Reason: to test that a valid user input works as predicted
+	3.)bool locateSequence(const string a[], int n, string target, int& begin, int& end);
+		i.) negative n value(d, -9, "samwell", b, e)
+			a.)string d[9] = {
+        "jon", "daenerys", "samwell", "samwell", "margaery", "margaery", "margaery", "samwell", "samwell"};
+				b.) Reason: to test an invalid but possible user input 
+		ii.) valid test case(d, 9, "samwell", b, e)
+			a.)  string d[9] = {
+        "jon", "daenerys", "samwell", "samwell", "margaery", "margaery", "margaery", "samwell", "samwell"};
+				b.) Reason: to test that a valid user input works as predicted
+		iii.) all values are equal to target(d, 5, "jon", b, e)
+			a.) string d[9] = {"jon","jon","jon","jon","jon",};
+			b.) Reason: to test a valid user input that may result in an error
+		iv.) array starts with sequence(d, 11, "jon", b, e)
+			a.) string d[11] = {"jon", "jon", "daenerys", "samwell", "samwell", "margaery", "margaery", "margaery", "samwell", "samwell"};
+			b.) Reason: to test a valid user input that may result in an error
+		v.) array ends with sequence(d, 8, "samwell", b, e)
+			a.) string d[8] = {"jon", "jon", "daenerys", "margaery", "margaery", "margaery", "samwell", "samwell"};
+			b.) Reason: to test a valid user input that may result in an error
+	4.) int locationOfMin(const string a[], int n);
+		i.) negative n value(people, -3)
+			a.) string people[5] = { "samwell", "jon", "margaery", "daenerys", "tyrion" };
+			b.) Reason: to test an invalid but possible user input
+		ii.) two min values(people, 6)
+			a.) string people[6] = { "samwell", "daenerys", "jon", "margaery", "daenerys", "tyrion" };
+			b.) Reason: to test a valid user input that may result in an error 
+		iii.) no elements(people, 0)
+			a.) string people[0] = { };
+			b.) Reason: to test a valid user input that may result in an error 
+	5.)int moveToEnd(string a[], int n, int pos);
+		i.) negative n value(people, -4, 1)
+			a.) string people[5] = { "samwell", "jon", "margaery", "daenerys", "tyrion" };
+			b.) Reason: to test an invalid but possible user input 
+		ii.) element already at end(people, 5, 4)
+			a.) string people[5] = { "samwell", "jon", "margaery", "daenerys", "tyrion" };
+			b.) Reason: to test a valid user input that may result in an error 
+		iii.) valid test case(people, 5, 2)
+			a.) string people[5] = { "samwell", "jon", "margaery", "daenerys", "tyrion" };
+			b.) Reason: to test that a valid user input works as predicted
+		iv.) pos not in array(people, 5, 9)
+			a.) string people[5] = { "samwell", "jon", "margaery", "daenerys", "tyrion" };
+			b.) Reason: to test an invalid but possible user input
+	6.) int moveToBeginning(string a[], int n, int pos);
+		i.) negative n value(people, -4, 2)
+			a.) string people[5] = { "samwell", "jon", "margaery", "daenerys", "tyrion" };
+			b.) Reason: to test an invalid but possible user input 
+		ii.) element already at beginning(people, 5, 0)
+			a.) string people[5] = { "samwell", "jon", "margaery", "daenerys", "tyrion" };
+			b.) Reason: to test a valid user input that may result in an error
+		iii.) valid test case(people, 5, 2)
+			a.) string people[5] = { "samwell", "jon", "margaery", "daenerys", "tyrion" };
+			b.) Reason: to test that a valid user input works as predicted
+		iv.)pos not in array(people, 5, 9)
+			a.) string people[5] = { "samwell", "jon", "margaery", "daenerys", "tyrion" };
+			b.) Reason: to test an invalid but possible user input
+	7.)int locateDifference(const string a1[], int n1, const string a2[], int n2);
+		i.)negative n1 or n2 value(cast, -6, roles, 4)
+			a.) string cast[5] = { "samwell", "jon", "margaery", "daenerys", "tyrion" };
+			b.) string roles[4] = { "samwell", "jon", "sansa", "jaime" };
+			c.) Reason: to test an invalid but possible user input 
+		ii.) arrays are the same(cast, 5, roles, 5)
+			a.) string cast[5] = { "samwell", "jon", "margaery", "daenerys", "tyrion" };
+			b.) string roles[5] = { "samwell", "jon", "margaery", "daenerys", "tyrion" };
+			c.) Reason: to test a valid user input that may result in an error
+		iii.) arrays are different size but valid(cast, 5, roles, 2)
+			a.) string cast[5] = { "samwell", "jon", "margaery", "daenerys", "tyrion" };
+			b.) string roles[5] = { "samwell", "jon" };
+			c.) Reason:
+	8.) int eliminateDups(string a[], int n);
+		i.)negative n value(d, -9)
+			a.) string d[9] = {
+        "jon", "daenerys", "samwell", "samwell", "margaery", "margaery", "margaery", "samwell", "samwell"};	
+				b.) Reason: to test an invalid but possible user input 	
+		   ii.)repeats at the beginning(d, 7)
+				a.)string d[7] = {"samwell", "samwell", "margaery", "margaery", "margaery", "samwell", "samwell"};
+				b.) Reason: to test a valid user input that may result in an error
+		iii.) repeats at the end(d, 7)
+			a.) string d[7] = {"samwell", "samwell", "margaery", "margaery", "margaery", "samwell", "samwell"};
+			b.) Reason: to test a valid user input that may result in an error
+		iv.) no repeats(d, 7)
+			a.) string d[7] = {"samwell", "samwl", "mrgaery", "maraery", "margaey", "samell", "saell"};
+			b.) Reason: to test a valid user input that may result in an error
+	9.) bool subsequence(const string a1[], int n1, const string a2[], int n2);
+		i.) n1 or n2 is negative(big, -6, little1, 3)
+			a.) string big[10] = { "samwell", "jon", "margaery", "daenerys", "tyrion", "margaery" };
+			b.) string little1[10] = { "jon", "daenerys", "tyrion" };
+			c.) Reason: to test an invalid but possible user input
+		ii.) arrays are the same(big, 6, little1, 6)
+			a.) string big[10] = { "samwell", "jon", "margaery", "daenerys", "tyrion", "margaery" };
+			b.) string little1[10] = { "samwell", "jon", "margaery", "daenerys", "tyrion", "margaery" };
+			c.) Reason: to test a valid user input that may result in an error
+		iii.) smaller array is not in the other one(big, 6, little1, 3)
+			a.) string big[10] = { "samwell", "jon", "margaery", "daenerys", "tyrion", "margaery" };
+			b.) string little1[10] = {"margaery", "samwell",  "tyrion" };
+			c.) Reason: to test a valid user input that may result in an error
+		iv.) valid test case(big, 6, little1, 3)
+			a.) string big[10] = { "samwell", "jon", "margaery", "daenerys", "tyrion", "margaery" };
+			b.) string little1[10] = { "jon", "daenerys", "tyrion" };
+			c.) Reason: to test that a valid user input works as predicted
+		v.) empty sequence()
+			a.)string big[10] = { "samwell", "jon", "margaery", "daenerys", "tyrion", "margaery" };
+			b.)string little1[10] = {};
+			c.)Reason: to test a valid user input that may result in an error
+	10.) int makeMerger(const string a1[], int n1, const string a2[], int n2, 
+                    string result[], int max);
+		i.)more than max elements()
+		ii.) n1 or n2 is negative(x, -5, y, 4, z, 20)
+			a.) string x[5] = { "cersei", "jon", "margaery", "samwell", "sansa" };
+			b.) string y[4] = { "daenerys", "jon", "jon", "tyrion" };
+			c.) string z[20];
+			d.) Reason: to test an invalid but possible user input
+		iii.) a1 or a2 is not non decreasing order(x, 5, y, 4, z, 20)
+			a.) string x[5] = { "cersei", "jon", "margaery", "samwell", "sansa" };
+			b.) string y[4] = { "tyrion","daenerys", "jon", "jon”};
+			c.) string z[20];
+			d.) Reason: to test an invalid but possible user input
+		iv.) valid test case(x, 5, y, 4, z, 20)
+			a.) string x[5] = { "cersei", "jon", "margaery", "samwell", "sansa" };
+			b.) string y[4] = { "daenerys", "jon", "jon", "tyrion" };
+			c.) string z[20];
+			d.) Reason: to test that a valid user input works as predicted
+	11.) int divide(string a[], int n, string divider);
+		i.) n is negative(f, -6, "samwell")
+			a.) string f[6] = { "cersei", "margaery", "sansa", "daenerys", "tyrion", "jon" };
+			b.) Reason: to test an invalid but possible user input
+		ii.) low value at beginning(f, 6, "samwell")
+			a.) string f[6] = { "cersei", "margaery", "sansa", "daenerys", "tyrion", "jon" };
+			b.) Reason: to test a valid user input that may result in an error
+		iii.) high value at end(f, 6, "samwell")
+			a.) string f[6] = { "cersei", "margaery", "sansa", "daenerys", "jon", "tyrion" };
+			b.) Reason: to test a valid user input that may result in an error
+

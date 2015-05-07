@@ -67,9 +67,9 @@ bool locateSequence(const string a[], int n, string target, int& begin, int& end
 int locationOfMin(const string a[], int n){
     string min=a[0];
     int position=0;
-    if(n<0)
+    if(n<=0)
     {
-        return(false);
+        return(-1);
     }
     for(int i=1; i<n;i++)
     {
@@ -83,10 +83,14 @@ int locationOfMin(const string a[], int n){
 }
 
 int moveToEnd(string a[], int n, int pos){
-    string temp = a[pos];
-    if(n<0)
+    if(pos>n)
     {
-        return(false);
+        return(-1);
+    }
+    string temp = a[pos];
+    if(n<=0)
+    {
+        return(-1);
     }
     for(int i=pos; i<n-1; i++)
     {
@@ -98,10 +102,14 @@ int moveToEnd(string a[], int n, int pos){
     
 }
 int moveToBeginning(string a[], int n, int pos){
-    string temp = a[pos];
-    if(n<0)
+    if(pos>n)
     {
-        return(false);
+        return(-1);
+    }
+    string temp = a[pos];
+    if(n<=0)
+    {
+        return(-1);
     }
     for(int i=pos; i>0; i--)
     {
@@ -138,23 +146,20 @@ int locateDifference(const string a1[], int n1, const string a2[], int n2){
 }
 
 int eliminateDups(string a[], int n){
+    int end=n;
     if(n<0)
     {
         return(-1);
     }
-    for(int i = 0; i<n; i++)
+    for(int i = 0; i<n-1; i++)
     {
         if(a[i]==a[i+1]){
-            moveToEnd(a, n, i+1);
+            moveToEnd(a, end, i+1);
             n--;
             i--;
         }
     }
-    for(int j=0; j<n+1;j++)
-    {
-        cerr<<"here is cerr: "<<a[j]<<endl;
-    }
-    return(n+1);
+    return(n);
 }
 
 bool subsequence(const string a1[], int n1, const string a2[], int n2){
@@ -194,6 +199,21 @@ bool subsequence(const string a1[], int n1, const string a2[], int n2){
             return(true);
         }
     }
+    else
+    {
+        for(int i=0; i<n2;i++)
+        {
+            if(a1[i]==a2[j])
+            {
+                j++;
+                count++;
+            }
+        }
+        if(count==n1)
+        {
+            return(true);
+        }
+    }
 return(false);
 }
 int makeMerger(const string a1[], int n1, const string a2[], int n2,
@@ -205,6 +225,24 @@ int makeMerger(const string a1[], int n1, const string a2[], int n2,
     int counter=0;
     string temp;
     int longer=n1;
+    for(int i=1; i<n1;i++)
+    {
+        if((n1+n2)>max)
+        {
+            return(-1);
+        }
+        else if(a1[i-1]>a1[i])
+        {
+            return(-1);
+        }
+    }
+    for(int l = 1; l<n2;l++)
+    {
+        if(a2[l-1]>a2[l])
+        {
+            return(-1);
+        }
+    }
     if((n1<0)||(n2<0))
     {
         return(-1);
@@ -226,46 +264,45 @@ int makeMerger(const string a1[], int n1, const string a2[], int n2,
             counter++;
         }
     }
-    
-    for(int f=0; f<20;f++)
-    {
-        cerr<<f<< " is : "<<result[f]<< endl;
-    }
     return(counter);
     
 }
 
+
 int divide(string a[], int n, string divider){
     string temp;
     string temp2;
-    int index2=n-1;
-    int index=0;
     int counter =0;
+    if(n<0)
+    {
+        return(-1);
+    }
     for(int i = 0; i<n; i++){
             if(a[i]<divider)
             {
-                temp=a[index];
-                a[index]=a[i];
-                a[i]=temp;
-                index++;
-                counter++;
+                moveToBeginning(a, n, i);
             }
-            else if(a[i]==divider)
-            {
-                a[i]=divider;
+            else if(a[i]>divider){
+                moveToEnd(a, n, i);
             }
-            else{
-                temp=a[index2];
-                a[index2]=a[i];
-                a[i]=temp;
-                index2--;
-            }
+
         }
-    return(counter+1);
+    for(int j=0; j<n; j++)
+    {
+        if(a[j]<divider)
+        {
+            counter++;
+        }
+    }
+    return(counter);
 }
 
 int main() {
-    string g[4] = { "samwell", "margaery", "tyrion", "jon" };
-    int s = divide(g, 4, "margaery");
-    cerr<<"s is here: "<<s<<endl;
+    string f[6] = { "cersei", "margaery", "sansa", "daenerys", "jon", "tyrion" };
+    int r = divide(f, 6, "samwell");  //  returns 4
+    cerr<<"this is r: "<< r<<endl;
+    for(int i=0; i<6;i++)
+    {
+        cerr<< f[i]<<endl;
+    }
 }
